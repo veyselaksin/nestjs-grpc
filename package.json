@@ -27,6 +27,7 @@
     "@nestjs/mapped-types": "*",
     "@nestjs/microservices": "^10.3.8",
     "@nestjs/platform-express": "^10.0.0",
+    "fs": "^0.0.1-security",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1",
     "ts-proto": "^1.176.1"
@@ -71,7 +72,11 @@
     "coverageDirectory": "./coverage",
     "testEnvironment": "node",
     "roots": [
-      "<rootDir>/apps/"
-    ]
+      "<rootDir>/apps/",
+      "<rootDir>/libs/"
+    ],
+    "moduleNameMapper": {
+      "^@app/common(|/.*)$": "<rootDir>/libs/common/src/$1"
+    }
   }
 }

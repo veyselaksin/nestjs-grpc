@@ -1,35 +1,42 @@
 import { Controller } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { UserService } from './user.service';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+import {
+  UserServiceController,
+  CreateUserRequest,
+  FindUserByIdRequest,
+  Empty,
+  FindAllUsersResponse, User, Pagination, UserServiceControllerMethods,
+} from '@app/common';
+import { Observable } from 'rxjs';
 
 @Controller()
-export class UserController {
+@UserServiceControllerMethods()
+export class UserController implements UserServiceController{
   constructor(private readonly userService: UserService) {}
 
-  @MessagePattern('createUser')
-  create(@Payload() createUserDto: CreateUserDto) {
-    return this.userService.create(createUserDto);
+  createUser(request:CreateUserRequest): Promise<User> | Observable<User> | User {
+    return undefined;
   }
 
-  @MessagePattern('findAllUser')
-  findAll() {
-    return this.userService.findAll();
+  findAllUsers(request: Empty): Promise<FindAllUsersResponse> | Observable<FindAllUsersResponse> | FindAllUsersResponse {
+    return undefined;
   }
 
-  @MessagePattern('findOneUser')
-  findOne(@Payload() id: number) {
-    return this.userService.findOne(id);
+  findUserById(request: FindUserByIdRequest): Promise<User> | Observable<User> | User {
+    return undefined;
   }
 
-  @MessagePattern('updateUser')
-  update(@Payload() updateUserDto: UpdateUserDto) {
-    return this.userService.update(updateUserDto.id, updateUserDto);
+  updateUser(request: User): Promise<User> | Observable<User> | User {
+    return undefined;
   }
 
-  @MessagePattern('removeUser')
-  remove(@Payload() id: number) {
-    return this.userService.remove(id);
+  deleteUser(request: FindUserByIdRequest): Promise<Empty> | Observable<Empty> | Empty {
+    return this.userService.delete(request.id);
   }
+
+  queryUser(request: Observable<Pagination>): Observable<FindAllUsersResponse> {
+    return undefined;
+  }
+
 }

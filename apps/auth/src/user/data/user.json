@@ -1,0 +1,38 @@
+[
+  {
+    "id": "ea5e1d8d-0f3b-4f6d-8b1d-3b6d3b3b3b3b",
+    "name": "John Doe",
+    "email": "john.doe@company.com",
+    "password": "password",
+    "age": 30,
+    "subscribed": true,
+    "socialMedia": {
+      "twitterUri": "https://twitter.com/johndoe",
+      "facebookUri": "https://facebook.com/johndo"
+    }
+  },
+  {
+    "id": "ea5e1d8d-0f3b-4f6d-8b1d-3b6d3b3b3b3a",
+    "name": "Jane Doe",
+    "email": "jane.doe",
+    "password": "password",
+    "age": 25,
+    "subscribed": false,
+    "socialMedia": {
+      "twitterUri": "https://twitter.com/janedoe",
+      "facebookUri": "https://facebook.com/janedo"
+      }
+    },
+    {
+    "id": "ea5e1d8d-0f3b-4f6d-8b1d-3b6d3b3b3b3c",
+    "name": "John Smith",
+    "email": "john.smith@company.com",
+    "password": "password",
+    "age": 35,
+    "subscribed": true,
+    "socialMedia": {
+      "twitterUri": "https://twitter.com/johnsmith",
+      "facebookUri": "https://facebook.com/johnsmi"
+      }
+    }
+]

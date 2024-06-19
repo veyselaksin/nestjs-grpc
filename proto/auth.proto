@@ -1,0 +1,49 @@
+syntax = 'proto3';
+
+package auth;
+
+service UserService{
+  rpc CreateUser(CreateUserRequest) returns (User);
+  rpc FindAllUsers(Empty) returns (FindAllUsersResponse);
+  rpc FindUserById(FindUserByIdRequest) returns (User);
+  rpc UpdateUser(User) returns (User);
+  rpc DeleteUser(FindUserByIdRequest) returns (Empty);
+  rpc QueryUser(stream Pagination) returns (stream FindAllUsersResponse);
+}
+
+message Empty {}
+
+message Pagination {
+  int32 page = 1;
+  int32 skip = 2;
+}
+
+message CreateUserRequest {
+  string email = 1;
+  string password = 2;
+  int32 age = 3;
+  bool subscribed = 4;
+  SocialMedia socialMedia = 5;
+}
+
+message FindAllUsersResponse {
+  repeated User users = 1;
+}
+
+message FindUserByIdRequest {
+  string id = 1;
+}
+
+message User {
+  string id = 1;
+  string email = 2;
+  string password = 3;
+  int32 age = 4;
+  bool subscribed = 5;
+  SocialMedia socialMedia = 6;
+}
+
+message SocialMedia {
+  optional string twitterUri = 1;
+  optional string facebookUri = 2;
+}

@@ -1,11 +1,23 @@
 import { Injectable } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+import { CreateUserRequest, User } from '@app/common';
+
+import * as UserData from './data/user.json';
+import { Observable } from 'rxjs';
+import { JsonDB } from '@app/common/utils/utils';
 
 @Injectable()
 export class UserService {
-  create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+  private readonly users: User[] = UserData;
+
+  create(request: CreateUserRequest): Observable<User> {
+    const conn:JsonDB = new JsonDB("./data/user.json")
+    const data = conn.read()
+    data.push({
+      ...request,
+      id: randomUUID(),
+      subscribed: false,
+      socialMedia: request.socialMedia
+    })
   }
 
   findAll() {
@@ -16,11 +28,11 @@ export class UserService {
     return `This action returns a #${id} user`;
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
-  }
+  // update(id: number, updateUserDto: UpdateUserDto) {
+  //   return `This action updates a #${id} user`;
+  // }
 
-  remove(id: number) {
+  delete(id: string){
     return `This action removes a #${id} user`;
   }
 }
